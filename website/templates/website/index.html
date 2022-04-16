@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock head %}
+
+{% block content %}
+<div class="container bg-dark text-white px-4 py-5 mt-5 rounded animated-box in">
+  <h1 class="display-5 fw-bold mb-3 w-50 mx-auto">Extract text from images with few steps!</h1>
+
+  <div class="row flex-lg-row-reverse align-items-center g-5 py-1">
+
+      <div class="col-lg-6">
+        
+        <div id="text-box" class="p-1 animated-box in">
+          <textarea class="lead"  rows="10">After uploading your image. You should expect your results in this section </textarea>
+        </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <button id="target" hx-post="{% url "get-text" %}" hx-indicator="#indicator" hx-target=".lead" type="button" class="btn btn-primary btn-lg px-4 me-md-2" disabled>Get Text</button>
+          <button type="button" class="btn btn-outline-secondary btn-lg px-4" onClick="window.location.reload();">Reload</button>
+          <h3 id="indicator" class="text-danger my-auto htmx-indicator">Loading...</h3>
+        </div>
+      </div>
+      {% comment %} <div class="col-10 col-sm-8 col-lg-6">
+        <img src="https://getbootstrap.com/docs/5.0/examples/heroes/bootstrap-themes.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" loading="lazy" width="700" height="500">
+      </div> {% endcomment %}
+      <div class="drag-area col-sm-10 col-lg-5  mx-auto align-center">
+        <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+        <header>Drag & Drop to Upload File</header>
+        <span>OR</span>
+        <button class="text-primary">Browse File</button>
+        <input type="file" hidden>
+        
+    </div>
+      
+    </div>
+  </div>
+{% endblock content %}
+
+{% block scripts %}
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+{% endblock scripts %}
