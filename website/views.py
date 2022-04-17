@@ -1,18 +1,17 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.decorators.http import require_POST
 import base64
 import numpy as np
 import pytesseract
 import cv2
 
-# Create your views here.
+
 def index(request):
-    context = {
-        
-    }
-    return render(request, 'website/index.html', context)
+    return render(request, 'website/index.html')
 
 
+@require_POST
 def get_text(request):
     image = request.POST.get('image')
     if image:
